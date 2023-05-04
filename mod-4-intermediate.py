@@ -31,21 +31,22 @@ def shift_letter(letter, shift):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    def shift_let(let, shift):
+    
+
     alph = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     alph_len = len(alph)
 
-    let_index = alph.index(let)
+    letter_index = alph.index(letter)
 
-    shifted_index = (let_index + shift) % alph_len
+    shifted_index = (letter_index + shift) % alph_len
     
     return alph[shifted_index]
 
-print(shift_let("A", 12))
-print(shift_let("A", 0)) 
-print(shift_let("A", 2))
-print(shift_let("Z", 1)) 
-print(shift_let("X", 5))
+print(shift_letter("A", 12))
+print(shift_letter("A", 0)) 
+print(shift_letter("A", 2))
+print(shift_letter("Z", 1)) 
+print(shift_letter("X", 5))
 
 def caesar_cipher(message, shift):
     '''Caesar Cipher. 
@@ -65,7 +66,7 @@ def caesar_cipher(message, shift):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    def caesar_cipher(message, shift):
+
     alph = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ '
     alph_len = len(alph)
 
@@ -81,9 +82,7 @@ def caesar_cipher(message, shift):
     return encoded_message
 
 
-message=input("Input the message:")
-shift=int(input("Input the number by which to shift the letters:"))
-print(caesar_cipher(message, shift)) 
+print(caesar_cipher("IAMJANSSEN", 4)) 
 
 
 def shift_by_letter(letter, letter_shift):
@@ -111,7 +110,7 @@ def shift_by_letter(letter, letter_shift):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    def shift_by_letter(letter, letter_shift):
+   
    
         alph = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ '
         alph_len = len(alph)
@@ -157,18 +156,18 @@ def vigenere_cipher(message, key):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-   def vigenere_cipher(message, key):
-    key = key * (len(message) // len(key) + 1)  # extend the key to match the length of the message
-    key = key[:len(message)]  # truncate the key if it's longer than the message
+   alph='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    key = key * (len(message) // len(key) + 1) 
+  
     result = ''
     for i in range(len(message)):
         if message[i] == ' ':
             result += ' '
         else:
-            message_letter_code = ord(message[i]) - 65  # convert letter to number between 0 and 25
-            key_letter_code = ord(key[i]) - 65  # convert letter to number between 0 and 25
-            shifted_letter_code = (message_letter_code + key_letter_code) % 26  # shift by key amount
-            result += chr(shifted_letter_code + 65)  # convert number back to letter
+            message_letter_code = alph.find(message[i])
+            key_letter_code = alph.find(key[i])
+            shifted_letter_code = (message_letter_code + key_letter_code) % len(alph)
+            result += alph[shifted_letter_code]
     return result
 print(vigenere_cipher("A C", "KEY"))
 print(vigenere_cipher("LONGTEXT", "KEY"))
