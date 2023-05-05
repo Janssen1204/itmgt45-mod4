@@ -34,7 +34,7 @@ def relationship_status(from_member, to_member, social_graph):
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
     
-    def relationship_status(from_member, to_member, social_graph):
+   
     if to_member in social_graph.get(from_member, {}).get('following', []):
         return "follower"
     if from_member in social_graph.get(to_member, {}).get('following', []):
@@ -110,8 +110,7 @@ def tic_tac_toe(board):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    def tic_tac_toe(board):
- 
+    
     for row in board:
         if len(set(row)) == 1 and row[0] != '':
             return row[0]
@@ -213,20 +212,26 @@ def eta(first_stop, second_stop, route_map):
     '''
     # Replace `pass` with your code. 
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    def eta(first_stop, second_stop, route_map):
    
-    total_time = 0
-  
-    current_stop = first_stop
-   
-    while current_stop != second_stop:
-       
-        next_stop = route_map[current_stop]
-       
-        time_to_next_stop = route_map[(current_stop, next_stop)]
-     
-        total_time += time_to_next_stop
-   
-        current_stop = next_stop
-   
-    return total_time
+   keys = list(route_map.keys)
+   firstkeys = [item[0]for item in keys]
+   secondkeys = [item[1]for item in keys]
+   time = list(route_map.values)
+   answer = []
+   final = []
+    
+   first_pos = firstkeys.index(first_stop)
+   second_pos = secondkeys.index(second_stop)
+    
+   for i in range(len(time)):
+       answer = answer + list(time[i].values)   
+   if first_stop == second_stop:
+       return sum(answer)
+   elif first_pos == second_pos:
+       return answer[first_pos]
+   elif first_pos > second_pos:
+       final = answer[first_pos:] + answer[:second_pos+1]
+       return sum(final)
+   elif first_pos < second_pos:
+       final = answer[first_pos:second_pos+1]
+       return sum(final)
